@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Clientes registrados</h2>
+<mat-dialog-content>
+  <div
+    mat-ripple
+    class="card card-body border-0 shadow d-flex flex-row align-items-center pointer mb-3"
+    *ngFor="let cliente of clientes"
+    (click)="crearSesion(cliente)"
+  >
+    <div class="icono d-flex align-items-center justify-content-center">
+      <mat-icon>person</mat-icon>
+    </div>
+    <div class="desc">
+      <h3 class="m-0">{{ cliente.NOMBRE_1 }} {{ cliente.APELLIDO_2 }}</h3>
+      <div class="text-muted">
+        {{ cliente.TIPO_DOC }}: {{ cliente.DOCUMENTO }}
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="button" mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

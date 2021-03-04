@@ -1,0 +1,142 @@
+// Bootstrap config
+@import "../node_modules/bootstrap/scss/bootstrap-reboot";
+@import "../node_modules/bootstrap/scss/bootstrap-grid";
+@import "../node_modules/bootstrap/scss/bootstrap-utilities";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/alert";
+
+// Fuentes
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&display=swap");
+
+// Estilos generales
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f1f4f9;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Inter, Roboto, sans-serif !important;
+  font-weight: 700 !important;
+}
+
+h1 {
+  font-size: 32px !important;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+// MATERIAL OVERRIDE
+.mat-tab-label-container,
+.mat-toolbar {
+  background-color: #fff;
+}
+
+.mat-list-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.blue-toolbar {
+  background-color: #0171b9;
+  color: #fff;
+}
+.blue-toolbar .nav-logo {
+  color: #fff;
+}
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.nav-logo {
+  color: #ed1c2c;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+}
+
+.page-content {
+  padding: 2rem;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-container {
+  width: 100%;
+  min-height: 100vh;
+}
+.example-sidenav {
+  width: 280px;
+}
+.sidenav-menu {
+  width: 100%;
+  height: 100%;
+  background-color: #0171b9;
+}
+.sidenav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidenav-menu ul .menu-item {
+  padding: 1rem;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+}
+
+.card-login {
+  max-width: 500px;
+  margin: 1rem;
+  border-radius: 1rem;
+}
+
+.card {
+  padding: 1rem 1.5rem;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+}
+
+.card-form {
+  margin: 0 0 1rem;
+}
+
+.card .icono {
+  width: 42px;
+  height: 42px;
+  background-color: #ed1c2c;
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 1rem;
+}

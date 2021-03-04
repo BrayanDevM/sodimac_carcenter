@@ -1,0 +1,71 @@
+<div class="page-content">
+  <h1>Mis facturas</h1>
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel *ngFor="let factura of facturas">
+      <mat-expansion-panel-header>
+        <mat-panel-title>No. Factura: {{ factura.ID_FACTURA }}</mat-panel-title>
+        <mat-panel-description>
+          <span> </span>
+          <span class="text-muted"
+            >Creada: {{ factura.FECHA | date: "d/M/yy, h:mm:ss a" }}</span
+          >
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-6">
+              <h2>
+                Solicitante: {{ factura.NOMBRE_1 }} {{ factura.NOMBRE_2 }}
+                {{ factura.APELLIDO_1 }} {{ factura.APELLIDO_2 }}
+              </h2>
+              <h4>Documento: {{ factura.TIPO_DOC }} {{ factura.DOCUMENTO }}</h4>
+              <h4>Correo: {{ factura.CORREO }}</h4>
+              <mat-divider class="my-3"></mat-divider>
+              <h2>
+                Empleado/Mecánico: {{ factura.NOMBRE_1_! }}
+                {{ factura.NOMBRE_2_1 }} {{ factura.APELLIDO_1_1 }}
+                {{ factura.APELLIDO_2_1 }}
+              </h2>
+              <h4>
+                Documento: {{ factura.TIPO_DOC_1 }} {{ factura.DOCUMENTO_1 }}
+              </h4>
+              <h4>Correo: {{ factura.CORREO_1 }}</h4>
+            </div>
+            <div class="col-6">
+              <mat-list>
+                <div mat-subheader>Vehiculo reparado</div>
+                <mat-list-item>
+                  <mat-icon mat-list-icon>drive_eta</mat-icon>
+                  <div mat-line>{{ factura.MARCA }} {{ factura.MODELO }}</div>
+                  <div mat-line>Año modelo: {{ factura.MODELO_FECHA }}</div>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-icon mat-list-icon>emoji_transportation</mat-icon>
+                  <div mat-line>Placa: {{ factura.PLACA }}</div>
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-icon mat-list-icon>palette</mat-icon>
+                  <div mat-line>Color: {{ factura.COLOR }}</div>
+                </mat-list-item>
+              </mat-list>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <mat-divider class="pb-4"></mat-divider>
+              <h2 class="m-0">
+                Costo reparación: {{ factura.TOTAL | currency }}
+              </h2>
+              <h4>
+                Estado factura:
+                <span class="text-success">{{ factura.ESTADO }}</span>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

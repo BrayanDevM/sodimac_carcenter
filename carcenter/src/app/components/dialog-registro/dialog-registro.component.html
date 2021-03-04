@@ -1,0 +1,83 @@
+<h2 mat-dialog-title>Registro</h2>
+<form [formGroup]="formRegistro" (onSubmit)="registrar()">
+  <mat-dialog-content>
+    <!-- *************************** CAMPO NOMBRE_1 *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Primer nombre</mat-label>
+      <input matInput formControlName="NOMBRE_1" placeholder="Brayan" />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    <!-- *************************** CAMPO NOMBRE_2 *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Segundo nombre</mat-label>
+      <input matInput formControlName="NOMBRE_2" placeholder="..." />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    <!-- *************************** CAMPO APELLIDO_1 *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Primer apellido</mat-label>
+      <input matInput formControlName="APELLIDO_1" placeholder="Devia" />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    <!-- *************************** CAMPO APELLIDO_2 *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Segundo apellido</mat-label>
+      <input matInput formControlName="APELLIDO_2" placeholder="..." />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    <!-- *************************** CAMPO TIPO_DOC *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Tipo de documento</mat-label>
+      <mat-select formControlName="TIPO_DOC">
+        <mat-option value="TI">Tarjeta de Identidad</mat-option>
+        <mat-option value="CC">Cédula de Ciudadanía</mat-option>
+        <mat-option value="CE">Cédula Extrangera</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- *************************** CAMPO DOCUMENTO *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Número de documento</mat-label>
+      <input matInput formControlName="DOCUMENTO" />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    <!-- *************************** CAMPO CELULAR *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Teléfono celular</mat-label>
+      <input matInput formControlName="CELULAR" />
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+    <!-- *************************** CAMPO DIRECCION *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Dirección de residencia</mat-label>
+      <input matInput formControlName="DIRECCION" />
+      <mat-icon matSuffix>location_on</mat-icon>
+    </mat-form-field>
+    <!-- *************************** CAMPO CORREO *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput formControlName="CORREO" />
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+    <!-- *************************** CAMPO ID_TIENDA *************************** -->
+    <mat-form-field appearance="outline" class="w-100 mb-1">
+      <mat-label>Seleccione tienda SODIMAC</mat-label>
+      <mat-select formControlName="ID_TIENDA">
+        <mat-option *ngFor="let tienda of tiendas" [value]="tienda.ID_TIENDA">
+          {{ tienda.NOMBRE }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" mat-dialog-close>Cancelar</button>
+    <button
+      mat-flat-button
+      type="submit"
+      [disabled]="formRegistro.invalid"
+      [mat-dialog-close]="formRegistro.value"
+      color="primary"
+    >
+      Registrarme!
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,185 @@
+<div class="page-content">
+  <div class="container-fluid">
+    <h2>Reparaciones incompletas</h2>
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel *ngFor="let solicitud of solicitudesIncompletas">
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            >Vehiculo: {{ solicitud.MARCA }}, {{ solicitud.MODELO }} - Color:
+            {{ solicitud.COLOR }}</mat-panel-title
+          >
+          <mat-panel-description>
+            <span>
+              {{ solicitud.NOMBRE_1 }} {{ solicitud.APELLIDO_1 }}, Celular:
+              {{ solicitud.CELULAR }}
+            </span>
+            <span class="text-muted"
+              >Creado:
+              {{ solicitud.CREADO_EL | date: "d/M/yy, h:mm:ss a" }}</span
+            >
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="content">
+          <div class="alert alert-warning">
+            <b>Descripción del problema:</b> {{ solicitud.DESCRIPCION }}
+          </div>
+          <mat-divider class="my-3"></mat-divider>
+          <h3>Finalizar trabajo y crear factura</h3>
+          <form [formGroup]="formFactura">
+            <!-- *************************** CAMPO EMPLEADO *************************** -->
+            <mat-form-field appearance="outline" class="">
+              <mat-label>Empleado que realiza mantenimiento</mat-label>
+              <mat-select formControlName="ID_EMPLEADO">
+                <mat-option
+                  *ngFor="let empleado of empleados"
+                  [value]="empleado.ID_EMPLEADO"
+                >
+                  {{ empleado.NOMBRE_1 }} {{ empleado.NOMBRE_2 }}
+                  {{ empleado.APELLIDO_1 }} {{ empleado.APELLIDO_2 }}
+                </mat-option>
+              </mat-select>
+              <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+
+            <!-- *************************** CAMPOS MANTENIMIENTOS *************************** -->
+            <ng-container formArrayName="MANTENIMIENTOS">
+              <mat-form-field
+                appearance="outline"
+                class=""
+                *ngFor="
+                  let mantenimF of mantenimientosForm.controls;
+                  let i = index
+                "
+              >
+                <mat-label>Mantenimiento realizado</mat-label>
+                <mat-select [formControlName]="i">
+                  <mat-option
+                    *ngFor="let mantenim of manteminientos"
+                    [value]="mantenim.ID_MANTENIMIENTO"
+                  >
+                    {{ mantenim.NOMBRE }}, costo: {{ mantenim.PRECIO }}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>construction</mat-icon>
+              </mat-form-field>
+              <button
+                (click)="agregarMantenimiento()"
+                mat-icon-button
+                type="button"
+              >
+                <mat-icon>add_circle</mat-icon>
+              </button>
+              <button
+                (click)="agregarMantenimiento(false)"
+                mat-icon-button
+                type="button"
+              >
+                <mat-icon>remove_circle</mat-icon>
+              </button>
+            </ng-container>
+
+            <!-- *************************** CAMPOS REPUESTOS *************************** -->
+            <ng-container formArrayName="REPUESTOS">
+              <mat-form-field
+                appearance="outline"
+                class=""
+                *ngFor="
+                  let repuestoForm of repuestosForm.controls;
+                  let i = index
+                "
+              >
+                <mat-label>Repuesto utilizado</mat-label>
+                <mat-select [formControlName]="i">
+                  <mat-option
+                    *ngFor="let repuesto of repuestos"
+                    [value]="repuesto.ID_REPUESTO"
+                  >
+                    {{ repuesto.NOMBRE }}, costo: {{ repuesto.PRECIO }}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>construction</mat-icon>
+              </mat-form-field>
+              <button (click)="agregarRepuesto()" mat-icon-button type="button">
+                <mat-icon>add_circle</mat-icon>
+              </button>
+              <button
+                (click)="agregarRepuesto(false)"
+                mat-icon-button
+                type="button"
+              >
+                <mat-icon>remove_circle</mat-icon>
+              </button>
+            </ng-container>
+
+            <button
+              (click)="calcularFactura()"
+              mat-stroked-button
+              color="primary"
+              [disabled]="formFactura.invalid"
+            >
+              Calcular insumos
+            </button>
+            <div *ngIf="facturaCalculada" class="container-fluid">
+              <div class="row">
+                <div class="col-12 my-3">
+                  <h2>
+                    Costo total: {{ formFactura.value.COSTO_TOTAL | currency }}
+                  </h2>
+                  <h3>IVA: {{ formFactura.value.IVA | currency }}</h3>
+                  <h3>
+                    Descuento: {{ formFactura.value.DESCUENTO | currency }}
+                  </h3>
+                  <h3>
+                    Total a pagar: {{ formFactura.value.TOTAL | currency }}
+                  </h3>
+                </div>
+              </div>
+              <div class="row">
+                <button
+                  (click)="
+                    crearFactura(
+                      solicitud.ID_VEHICULO,
+                      solicitud.ID_TIENDA,
+                      solicitud
+                    )
+                  "
+                  mat-flat-button
+                  color="primary"
+                >
+                  <mat-icon>request_quote</mat-icon>
+                  Guardar y Facturar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <h2 class="mt-5">Reparaciones completadas</h2>
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel *ngFor="let solicitud of solicitudesCompletas">
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            >Vehiculo: {{ solicitud.MARCA }}, {{ solicitud.MODELO }} - Color:
+            {{ solicitud.COLOR }}</mat-panel-title
+          >
+          <mat-panel-description>
+            {{ solicitud.NOMBRE_1 }} {{ solicitud.APELLIDO_1 }}, Celular:
+            {{ solicitud.CELULAR }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="content">
+          <div class="alert alert-success">
+            {{ solicitud.DESCRIPCION }} <br />
+            <b>
+              {{ solicitud.ESTADO }}
+            </b>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

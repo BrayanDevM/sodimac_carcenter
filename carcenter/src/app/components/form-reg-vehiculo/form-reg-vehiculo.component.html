@@ -1,0 +1,72 @@
+<div class="page-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-4">
+        <div class="card card-body card-form shadow-sm p-4">
+          <h1>Información básica del vehículo</h1>
+          <form [formGroup]="formVehiculo" (ngSubmit)="registrarVehiculo()">
+            <!-- *************************** CAMPO MARCA *************************** -->
+            <mat-form-field appearance="outline" class="w-100 mb-1">
+              <mat-label>Marca</mat-label>
+              <input matInput formControlName="MARCA" placeholder="Mazda" />
+              <!-- <mat-icon matSuffix>person</mat-icon> -->
+            </mat-form-field>
+            <!-- *************************** CAMPO MODELO *************************** -->
+            <mat-form-field appearance="outline" class="w-100 mb-1">
+              <mat-label>Modelo</mat-label>
+              <input matInput formControlName="MODELO" placeholder="Mazda 3" />
+              <!-- <mat-icon matSuffix>person</mat-icon> -->
+            </mat-form-field>
+            <!-- *************************** CAMPO MODELO_FECHA *************************** -->
+            <mat-form-field appearance="outline" class="w-100 mb-1">
+              <mat-label>Año del Modelo</mat-label>
+              <input
+                matInput
+                formControlName="MODELO_FECHA"
+                placeholder="2021"
+              />
+              <!-- <mat-icon matSuffix>person</mat-icon> -->
+            </mat-form-field>
+            <!-- *************************** CAMPO PLACA *************************** -->
+            <mat-form-field appearance="outline" class="w-100 mb-1">
+              <mat-label>Placa</mat-label>
+              <input matInput formControlName="PLACA" placeholder="2021" />
+              <!-- <mat-icon matSuffix>person</mat-icon> -->
+            </mat-form-field>
+            <!-- *************************** CAMPO COLOR *************************** -->
+            <mat-form-field appearance="outline" class="w-100 mb-1">
+              <mat-label>Color</mat-label>
+              <input matInput formControlName="COLOR" placeholder="2021" />
+              <!-- <mat-icon matSuffix>person</mat-icon> -->
+            </mat-form-field>
+            <div>
+              <button
+                mat-flat-button
+                type="submit"
+                class="w-100"
+                color="primary"
+              >
+                Registrar vehículo
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="card card-body card-form shadow-sm p-4">
+          <h1>Mis vehículos</h1>
+          <h3 *ngIf="vehiculos.length === 0" class="text-muted">
+            No tienes vehículos registrados
+          </h3>
+          <div
+            *ngFor="let vehiculo of vehiculos"
+            class="card card-body shadow mb-3"
+          >
+            Vehiculo: {{ vehiculo.MARCA }}, {{ vehiculo.MODELO }} - Color:
+            {{ vehiculo.COLOR }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

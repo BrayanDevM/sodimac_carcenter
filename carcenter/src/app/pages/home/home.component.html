@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand d-flex flex-row align-items-end"
+      href="http://www.sodimac.com/"
+      target="_blank"
+    >
+      <img
+        src="https://logodownload.org/wp-content/uploads/2019/09/sodimac-logo.png"
+        height="32"
+      />
+      <span class="nav-logo">CAR CENTER</span>
+    </a>
+    <button mat-icon-button>
+      <mat-icon>help</mat-icon>
+    </button>
+  </div>
+</nav>
+
+<!-- ************************************* PAGE CONTENT *************************************-->
+<div
+  class="page-wrapper-center d-flex flex-row align-items-center justify-content-center"
+>
+  <div class="card card-body card-login border-0 shadow">
+    <div class="header d-flex flex-row align-items-center">
+      <div class="icono d-flex align-items-center justify-content-center">
+        <mat-icon>person</mat-icon>
+      </div>
+      <h2 class="m-0">Entrar como Cliente</h2>
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id magnam alias
+      ut tempora maiores impedit delectus similique odio, atque quibusdam
+      tenetur accusantium neque, dicta porro aliquam ad asperiores cum labore.
+    </p>
+    <button mat-stroked-button color="primary" class="me-3" (click)="entrar()">
+      Sí, entrar como cliente
+    </button>
+    <button mat-stroked-button color="primary" (click)="registrar()">
+      Registrarme
+    </button>
+  </div>
+
+  <div class="card card-body card-login border-0 shadow">
+    <div class="header d-flex flex-row align-items-center">
+      <div class="icono d-flex align-items-center justify-content-center">
+        <mat-icon>supervisor_account</mat-icon>
+      </div>
+      <h2 class="m-0">Entrar como Supervisor</h2>
+    </div>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id magnam alias
+      ut tempora maiores impedit delectus similique odio, atque quibusdam
+      tenetur accusantium neque, dicta porro aliquam ad asperiores cum labore.
+    </p>
+    <button mat-stroked-button color="accent" routerLink="/admin">
+      Sí, entrar como supervisor
+    </button>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<header>
+  <mat-toolbar>
+    <span class="nav-logo">CARCENTER</span>
+    <span class="example-spacer"></span>
+    <button (click)="cerrarSesion()" mat-button>
+      <mat-icon>logout</mat-icon> Cerrar sesión
+    </button>
+  </mat-toolbar>
+</header>
+
+<mat-tab-group dynamicHeight>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="me-2">car_repair</mat-icon>
+      Mis reparaciones
+    </ng-template>
+    <app-facturas></app-facturas>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="me-2">car_rental</mat-icon>
+      Registrar vehículo
+    </ng-template>
+    <app-form-reg-vehiculo
+      [vehiculos]="vehiculos"
+      (vehiculoRegistrado)="obtenerVehiculos()"
+    ></app-form-reg-vehiculo>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="me-2">support_agent</mat-icon>
+      Solicitar reparación
+    </ng-template>
+    <app-form-mantenimiento [vehiculos]="vehiculos"></app-form-mantenimiento>
+  </mat-tab>
+</mat-tab-group>

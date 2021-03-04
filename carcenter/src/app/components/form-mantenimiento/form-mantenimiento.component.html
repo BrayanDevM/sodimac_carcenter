@@ -1,0 +1,67 @@
+<div class="page-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-4">
+        <div class="card card-body card-form shadow-sm p-4">
+          <h1>Solicitar reparación de vehículo</h1>
+          <form [formGroup]="formSolicitud" (ngSubmit)="registrarVehiculo()">
+            <!-- *************************** CAMPO VEHICULO *************************** -->
+            <mat-form-field appearance="outline" class="w-100 mb-1">
+              <mat-label>Vehiculo</mat-label>
+              <mat-select formControlName="ID_VEHICULO">
+                <mat-option
+                  *ngFor="let vehiculo of vehiculos"
+                  [value]="vehiculo.ID_VEHICULO"
+                >
+                  {{ vehiculo.MARCA }}, {{ vehiculo.PLACA }} - Color
+                  {{ vehiculo.COLOR }}
+                </mat-option>
+              </mat-select>
+              <!-- <mat-icon matSuffix>person</mat-icon> -->
+            </mat-form-field>
+            <!-- *************************** CAMPO DESCRIPCIÓN *************************** -->
+            <mat-form-field appearance="outline" class="w-100 mb-1">
+              <mat-label>Descripción de la solicitud</mat-label>
+              <textarea formControlName="DESCRIPCION" matInput></textarea>
+            </mat-form-field>
+            <div>
+              <button
+                mat-flat-button
+                type="submit"
+                class="w-100"
+                color="primary"
+              >
+                Registrar solicitud
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="card card-body card-form shadow-sm p-4">
+          <h1>Mis solicitudes</h1>
+          <h3 *ngIf="solicitudes.length === 0" class="text-muted">
+            No tienes solicitudes registradas
+          </h3>
+          <div
+            *ngFor="let solicitud of solicitudes"
+            class="card card-body shadow mb-3"
+          >
+            <p>
+              Descripción: {{ solicitud.DESCRIPCION }} <br />
+              Vehiculo: {{ solicitud.MARCA }}, {{ solicitud.MODELO }}
+            </p>
+            <div
+              [ngClass]="{
+                'text-danger': solicitud.ESTADO === 'INCOMPLETA',
+                'text-success': solicitud.ESTADO === 'COMPLETADA'
+              }"
+            >
+              {{ solicitud.ESTADO }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
